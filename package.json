@@ -1,0 +1,24 @@
+{
+  "name": "gbf_autowipetweet",
+  "version": "1.0.0",
+  "description": "Nodejs script to auto wipe tweet by GBF",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/altkennyh2l/GBF_AutoWipeTweet.git"
+  },
+  "author": "Kenny Ha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/altkennyh2l/GBF_AutoWipeTweet/issues"
+  },
+  "homepage": "https://github.com/altkennyh2l/GBF_AutoWipeTweet#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "node-fetch": "^3.2.3"
+  }
+}
