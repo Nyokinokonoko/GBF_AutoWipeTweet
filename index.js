@@ -37,4 +37,4 @@ async function deleteGBFTweet() {
   }
 }
 
-deleteGBFTweet();
+let runEvery30Second = setInterval(() => deleteGBFTweet(), 30000);
