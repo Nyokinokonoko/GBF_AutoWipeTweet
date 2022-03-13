@@ -31,7 +31,9 @@ async function deleteGBFTweet() {
       "statuses/destroy/:id",
       { id: newestTweet[0] },
       function (err, data, response) {
-        console.log(err);
+        if (err) {
+          console.log(err);
+        }
       }
     );
   }
