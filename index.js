@@ -13,7 +13,7 @@ const target_source = "グランブルー ファンタジー";
 
 async function getLatestTweet(target) {
   const gettingTweetResponse = await fetch(
-    `https://api.twitter.com/2/users/${target}/tweets?exclude=retweets&tweet.fields=source`,
+    `https://api.twitter.com/2/users/${target}/tweets?exclude=retweets&tweet.fields=source&max_results=5`,
     {
       method: "get",
       headers: { Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}` },
