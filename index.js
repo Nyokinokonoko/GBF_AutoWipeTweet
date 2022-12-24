@@ -9,8 +9,6 @@ const T = new Twit({
   access_token_secret: process.env.TWITTER_OAUTH_ACCESSSECRET,
 });
 
-const target_source = "グランブルー ファンタジー";
-
 async function getLatestTweet(target) {
   const gettingTweetResponse = await fetch(
     `https://api.twitter.com/2/users/${target}/tweets?exclude=retweets&tweet.fields=source&max_results=5`,
@@ -20,25 +18,30 @@ async function getLatestTweet(target) {
     }
   );
   const tweet = await gettingTweetResponse.json();
-  let result = [tweet.data[0].id, tweet.data[0].source];
+  let result = { id: tweet.data[0].id, content: tweet.data[0].text };
   return result;
 }
 
 async function deleteGBFTweet() {
+  eventLog("Checking for tweets...");
   let newestTweet = await getLatestTweet(process.env.TARGET_USERID);
-  if (newestTweet[1] === target_source) {
+  if (newestTweet.content.includes(":参戦ID\n参加者募集！\n")) {
     T.post(
       "statuses/destroy/:id",
-      { id: newestTweet[0] },
+      { id: newestTweet.id },
       function (err, data, response) {
         if (err) {
           console.log(err);
         } else {
-          console.log(`Deleted tweet with ID ${newestTweet[0]}`);
+          eventLog(`Deleted tweet with ID ${newestTweet.id}`);
         }
       }
     );
   }
+}
+
+function eventLog(message) {
+  console.log(`${new Date().toLocaleString()}: ${message}`);
 }
 
 let runEvery30Second = setInterval(() => deleteGBFTweet(), 30000);
