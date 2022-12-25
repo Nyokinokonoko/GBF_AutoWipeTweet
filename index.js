@@ -9,6 +9,8 @@ const T = new Twit({
   access_token_secret: process.env.TWITTER_OAUTH_ACCESSSECRET,
 });
 
+const executionInterval = 30000;
+
 async function getLatestTweet(target) {
   const gettingTweetResponse = await fetch(
     `https://api.twitter.com/2/users/${target}/tweets?exclude=retweets&tweet.fields=source&max_results=5`,
@@ -41,7 +43,11 @@ async function deleteGBFTweet() {
 }
 
 function eventLog(message) {
-  console.log(`${new Date().toLocaleString()}: ${message}`);
+  console.log(`[GBF_AutoWipeTweet] ${new Date().toLocaleString()}: ${message}`);
 }
 
-let runEvery30Second = setInterval(() => deleteGBFTweet(), 30000);
+eventLog(
+  `Successfully launched. Execution interval: ${executionInterval / 1000}s`
+);
+deleteGBFTweet();
+let runEvery30Second = setInterval(() => deleteGBFTweet(), executionInterval);
