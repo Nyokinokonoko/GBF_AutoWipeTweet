@@ -3,8 +3,8 @@ import "dotenv/config";
 import Twit from "twit";
 
 const T = new Twit({
-  consumer_key: process.env.TWITTER_OAUTH_CONSUMERKEY,
-  consumer_secret: process.env.TWITTER_OAUTH_CONSUMERSECRET,
+  consumer_key: process.env.TWITTER_API_TOKEN,
+  consumer_secret: process.env.TWITTER_API_SECRET,
   access_token: process.env.TWITTER_OAUTH_ACCESSTOKEN,
   access_token_secret: process.env.TWITTER_OAUTH_ACCESSSECRET,
 });
